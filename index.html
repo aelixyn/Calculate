@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">	
+	<title>UT's Score Calculator</title>
+	<link rel="icon" href="./images/favicon/calculator.svg" type="image/x-icon">
+	<!-- File CSS -->
+	<link rel="stylesheet" href="./style.css">
+	<!-- Font Online -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+	<style>
+		/* Style untuk jam digital */
+		#clock {
+			text-align: center;
+			font-size: 10px;
+			font-weight: bold;
+			color: #ffffff;
+			margin-bottom: 20px;
+			padding: 7px;
+			background: rgb(48, 206, 185);
+			color: rgb(255, 255, 255);
+			border-radius: 90px;
+			box-shadow: 0 4px 15px rgba(255, 255, 255, 0.329);
+			font-family: 'Poppins', sans-serif;
+			letter-spacing: 5px;
+			max-width: 74px;
+			margin: 0 auto 0px auto;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<!-- Jam Digital -->
+		<div id="clock"></div>
+		
+		<h1 class="title">Nilai UAS</h1>
+		<p class="second-title">Universitas Terbuka</p>
+	</header>
+	<main>
+		<section class="score-information-card">
+			<section>
+				<p>Jumlah Soal</p>
+				<div class="flex">
+					<div class="field-nilai-benar">
+						<p>Benar</p>
+						<input type="number" id="nilai-benar" class="nilai-benar">
+					</div>
+					<p class="slash-sign">/</p>
+					<div class="field-jumlah-soal">
+						<p>Soal</p>
+						<input type="number" id="jumlah-soal" class="jumlah-soal" placeholder="50">
+					</div>
+					<div class="field-nilai-ujian-sementara">
+						<p id="nilai-ujian-sementara"></p>
+					</div>
+				</div>
+				
+				<p>Nilai Tutorial</p>
+				<div class="field-jenis-tutorial">
+					<p>Jenis Tutorial</p>
+					<div class="flex">
+						<select id="jenis-tutorial">
+							<option value="online">Online (TUTON)</option>
+							<option value="webinar">Webinar (TUWEB)</option>
+							<option value="tatap-muka">Tatap Muka (TTM)</option>
+							<option value="penugasan">Penugasan (TMK)</option>
+						</select>
+						<p id="info-tunjangan-nilai"></p>
+					</div>
+				</div>
+				<div class="field-nilai-akumulasi">
+					<p>Nilai Akhir Tuton</p>
+					<input type="number" id="nilai-akumulasi" class="nilai-akumulasi">
+				</div>
+
+				<p>Mata Kuliah</p>
+				<div class="field-tingkat-kesulitan">
+					<p>Level Kesulitan</p>
+					<select id="tingkat-kesulitan">
+						<option value="mudah">Mudah</option>
+						<option value="sedang">Sedang</option>
+						<option value="sulit">Sulit</option>
+					</select>
+				</div>
+			</section>
+
+			<div class="line-separator">
+				<div class="line"></div>
+			</div>
+
+			<section class="hasil-hitungan">
+				<p>Nilai UAS 😲</p>
+				<div class="flex-centered">
+					<div class="field-nilai-akhir">
+						<p id="nilai-akhir"></p>
+					</div>
+					<div class="field-keterangan">
+						<p id="keterangan"></p>
+					</div>
+				</div>
+				<p id="text-penyemangat" class="text-penyemangat"></p>
+			</section>
+		</section>
+
+		<h3 id="predikat-nilai-minimum-untuk-setiap-kesulitan-mata-kuliah">Level</h3>
+		<div class="table">
+			<table class="table-standar-nilai">
+				<thead>
+					<tr>
+						<th>Mudah</th>
+						<th>Sedang</th>
+						<th>Sulit</th>
+						<th>Keterangan</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>E</td>
+					</tr>
+					<tr>
+						<td>40</td>
+						<td>35</td>
+						<td>30</td>
+						<td>D</td>
+					</tr>
+					<tr>
+						<td>50</td>
+						<td>45</td>
+						<td>40</td>
+						<td>C-</td>
+					</tr>
+					<tr>
+						<td>55</td>
+						<td>50</td>
+						<td>45</td>
+						<td>C</td>
+					</tr>
+					<tr>
+						<td>60</td>
+						<td>55</td>
+						<td>50</td>
+						<td>B-</td>
+					</tr>
+					<tr>
+						<td>70</td>
+						<td>65</td>
+						<td>60</td>
+						<td>B</td>
+					</tr>
+					<tr>
+						<td>75</td>
+						<td>70</td>
+						<td>65</td>
+						<td>A-</td>
+					</tr>
+					<tr>
+						<td>80</td>
+						<td>75</td>
+						<td>70</td>
+						<td>A</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</main>
+	<div class="footer-image"></div>
+	<footer>
+		<p>Developed by Admin Fun N Learn</p>
+		<p class="second-title">Ilmu Komunikasi</p>
+	</footer>
+
+	<script src="./script.js"></script>
+	<script>
+		// Jam Digital
+		setInterval(() => {
+			let date = new Date();
+			let clock = document.getElementById('clock');
+			
+			// Format jam, menit, detik dengan leading zero
+			let hours = date.getHours().toString().padStart(2, '0');
+			let minutes = date.getMinutes().toString().padStart(2, '0');
+			let seconds = date.getSeconds().toString().padStart(2, '0');
+			
+			clock.innerHTML = hours + ":" + minutes + ":" + seconds;
+		}, 1000);
+	</script>
+</body>
+</html>
