@@ -67,6 +67,7 @@ main {
   background-color: light-dark(rgb(90, 194, 255), rgba(0, 20, 20, 0.8));
   border-width: 5px;
   border-style: solid;
+  border-color: light-dark(rgb(19, 23, 24), grey);
   border-color: light-dark(rgb(255, 255, 255), grey);
   border-radius: 60px;
 }
@@ -442,7 +443,7 @@ footer button svg {
     margin-bottom: -30vh;
     padding-top: 5vh;
   }
-  
+
   .score-information-card {
     flex-direction: row;
     align-items: center;
@@ -450,7 +451,7 @@ footer button svg {
     backdrop-filter: blur(20px);
     width: min(880px, 80%);
   }
-  
+
   .score-information-card section {
     padding: 2%;
   }
