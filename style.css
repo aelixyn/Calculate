@@ -135,7 +135,7 @@ input, select {
   text-align: center;
   width: 170px;
   background-color: rgb(48, 206, 185);
-  border-radius: 16%;
+  border-radius: 5%;
 }
 
 .line-separator {
